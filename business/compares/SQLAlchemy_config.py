@@ -7,7 +7,7 @@ from app import app
 HOSTNAME = 'localhost'
 PORT = '3306'
 USERNAME = 'root'
-PASSWORD = 'adminroot'
+PASSWORD = '{your Password}'
 DATABASE = 'xf_Project'
 DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME, PASSWORD, HOSTNAME, PORT, DATABASE)
 
