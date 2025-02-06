@@ -640,66 +640,6 @@ def send_mail():
     return "测试发送成功"
 
 
-# @app.route('/listen', methods=['GET', 'POST'])
-# def select(request):
-#     context = {}
-#     try:
-#         if request.method == 'POST':
-#             student_id = request.POST.get('student_id')
-#             try:
-#                 student_data = StudentInfoModel.objects.get(student_id=student_id)
-#                 print(student_data)
-#
-#                 dicts = {}
-#
-#                 context = {
-#                     'student_id': student_data.student_id,
-#                     'student_name': student_data.student_name,
-#                     'student_phone': student_data.student_phone,
-#                     'student_address': student_data.student_address,
-#                     'student_faculty': student_data.student_faculty,
-#                     'student_major': student_data.student_major,
-#                     'course_data': dicts,
-#                     'msg': True,
-#                 }
-#                 print(context)
-#
-#                 tts_file = 'static/text_to_speech.mp3'
-#                 Text = '该学生的学号是{student_id}, 姓名是{student_name},电话是{student_phone},地址是{student_address},' \
-#                        '院系是{student_faculty}, 专业是{student_major}.'.format(**context)
-#                 tts_api_get_result(API_ID, API_Key, API_Secret, Text, tts_file)
-#
-#                 # 音频文件的URL，请替换为你想要下载的音频链接   todo:会极大影响页面的加载速度
-#                 audio_url = 'https://vits.ayya.top/voice/bert-vits2?text=' \
-#                             '{}' \
-#                             '&id=0&format=mp3&length=1.2&noise=0.45&noisew=0.53&segment_size=36&streaming=true&sdp_ratio=0.3&length_zh=1.2&length_ja=1&length_en=1&emotion=4'.format(Text)
-#                 # 自定义保存的文件名，包括路径和扩展名
-#                 custom_filename = 'static/vits_ayya_speaker.mp3'  # 你想保存的文件名
-#                 # 调用函数下载音频文件并指定文件名
-#                 file_path = download_audio(audio_url, custom_filename)
-#
-#                 return render_template(request, 'StudentManagement/select.html', context=context)
-#
-#             except StudentInfoModel.DoesNotExist:
-#                 context = {
-#                     'error': "Not Found student id: " + str(student_id),
-#                 }
-#                 return render_template(request, 'StudentManagement/select.html', context=context)
-#         else:
-#             root_information = request.session.get('user_name')
-#             if root_information:
-#                 user_id = root_information['user_id']
-#                 user_data = StudentInfoModel.objects.filter(user_id=user_id).first()
-#                 context = {
-#                     "student_id": user_data.student_id if user_data else None,
-#                 }
-#             return render_template(request, "StudentManagement/select.html", context=context)
-#     except Exception as e:
-#         context = {
-#             'error': str(e),
-#         }
-#         return render_template(request, 'StudentManagement/select.html', context=context)
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=3168)
