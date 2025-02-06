@@ -6,7 +6,7 @@ import pymysql
 app_config = {
     'host': '127.0.0.1',
     'user': 'root',
-    'password': 'Zywz5201314',
+    'password': '{your password}',
     'db': 'xf_Project',
 }
 
