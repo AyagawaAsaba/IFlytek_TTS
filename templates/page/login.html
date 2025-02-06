@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="../static/css/login.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    </head>
+
+    <body>
+        <div class="content">
+            <div class="introduce">
+                <div class="introduce-content">
+                    <p class="tips animate__animated animate__slideInLeft">
+                        Enter your personal details and start your amazing campus dormitory journey with us!<br/>
+                        Click me to <a href="{{ url_for('index') }}">Index Page</a>
+                    </p>
+                </div>
+
+            </div>
+            <div class="form-wrapper animate__animated animate__slideInRight">
+                {#                <form action="/login" method="post">#}
+                <form action="{{ url_for("login") }}" method="post">
+                    <div class="login-form">
+                        <h1>登 录</h1>
+                        <span class="login-tips">
+                            合肥财经职业学院——智能实践
+                        </span>
+                        <div class="other-login" type="submit">
+                            <img src="../static/asset/WeChat.png" alt="">
+                            <span>微 信 登 录</span>
+                        </div>
+                        <div class="divider">
+                            <span class="line"></span>
+                            <span class="divider-text">邮 箱 登 录</span>
+                            <span class="line"></span>
+                        </div>
+                        <div class="form">
+                            <div class="input-wrapper">
+                                <span class="input-tips">邮 箱</span>
+                                <label>
+                                    <input type="text" name="email" class="ipt" placeholder="Example@qq.com">
+                                </label>
+                            </div>
+                            <div class="input-wrapper">
+                                <span class="input-tips">密 码</span>
+                                <label>
+                                    <input type="password" name="password" class="ipt" placeholder="最少密码数为8位">
+                                </label>
+                                {% for message in get_flashed_messages() %}
+                                    <p>{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="other-setting">
+                                <div class="rem-pwd">
+                                    <label>
+                                        <input type="checkbox" id="remember-password">
+                                    </label>
+                                    <span>在此网站上记住密码</span>
+                                </div>
+                                <span class="forget-pwd">
+                                    <a href="{{ url_for('forget') }}">忘记密码了？</a>
+                                </span>
+                            </div>
+                            <button type="submit" class="btn">登录</button>
+                        </div>
+                        <span class="register">还没有注册？来<a href="{{ url_for('register') }}">创建一个新账户</a>吧！</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    <!-- JavaScript代码 -->
+    <script>
+        // 获取复选框和存储键
+        const rememberPasswordCheckbox = document.getElementById('remember-password');
+        const storageKey = 'rememberPassword';
+
+        // 当页面加载时，检查本地存储中是否有保存的记住密码状态
+        window.onload = function () {
+            const rememberPassword = localStorage.getItem(storageKey);
+
+            // 如果有保存的状态，则根据其值设置复选框的状态
+            if (rememberPassword !== null) {
+                rememberPasswordCheckbox.checked = rememberPassword === 'true';
+            }
+        };
+
+        // 当复选框状态改变时，将其值保存在本地存储中
+        rememberPasswordCheckbox.addEventListener('change', function () {
+            localStorage.setItem(storageKey, this.checked);
+        });
+    </script>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基于讯飞开放平台应用</title>
+    <meta name="description" content="简介">
+    <meta name="keywords" content="关键字">
+</head>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.0.min.js') }} "></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }} "></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mycss.css') }}"/>
+
+<script>
+$(document).ready(function(){
+var path=window.location.pathname;
+var regExp=/[\/\.\?]+/;
+str=path.split(regExp);
+var node=str.slice(1);
+$('#'+node+' a').addClass('at');
+$('#'+node).parent().parent().parent().addClass('in');
+})
+
+
+</script>
+<body>
+<div class="col-md-2 side-nav">
+  <div class="panel-group" id="accordion">
+    <div class="panel-heading panel">
+      <a class="side-nav-item item-title" href="/">
+      	首页
+      </a>
+      <div class="item-body collapse" id='index'>
+      </div>
+    </div>
+    <div class="panel-heading panel">
+      <a data-toggle="collapse" data-parent="#accordion" href="#item-cangku" id="headcangku" class="side-nav-item item-title">
+      文字识别
+      </a>
+      <div id="item-cangku" class="panel-collapse collapse">
+        <div class="item-body">
+          <ul class="list-unstyled">
+            <li class="item-second" id='handwriting'><a href="/handwriting">手写文字识别</a></li>
+            <li class="item-second" id='general'><a href="/general">印刷文字识别</a></li>
+            <li class="item-second"><a href="/itr">拍照速算识别</a></li>
+            <li class="item-second"><a href="/itr_teach">公式识别</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="col-md-10">
+    <div class="panel panel-primary">
+        <section class="service_section layout_padding">
+            <div class="service_container">
+                <div class="container ">
+                    <div class="heading_container">
+                        <h2>
+                            基于讯飞开放平台 <span>实验</span>
+                        </h2>
+                        <p>
+                            全栈AI能力产品，开启你的AI之旅
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 ">
+                            <div class="box ">
+                                <div class="img-box">
+                                    <img src="../static/images/s1.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        人脸识别
+                                    </h5>
+                                    <p>
+                                        人脸特征分析实验</br>人脸比对实验 </br>
+                                        </br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 ">
+                            <div class="box ">
+                                <div class="img-box">
+                                    <img src="../static/images/s2.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        场景识别
+                                    </h5>
+                                    <p>
+                                        场景识别实验</br></br>
+                                        <br/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 ">
+                            <div class="box ">
+                                <div class="img-box">
+                                    <img src="../static/images/s3.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        物体识别
+                                    </h5>
+                                    <p>
+                                        物体识别实验</br></br>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 ">
+                            <div class="box ">
+                                <div class="img-box">
+                                    <img src="../static/images/s4.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        通用文字识别
+                                    </h5>
+                                    <p>
+                                        手写文字识别实验、印刷文字识别实验</br>
+                                        拍照速算识别实验、公式识别实验
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- end service section -->
+    </div>
+</div>
+</body>
+</html>

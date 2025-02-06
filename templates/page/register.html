@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="../static/css/register.css">
+    <!--    <script src="../static/jquery/jquery.3.6.min.js"></script>    -->
+    <script src="../static/js/vendor/jquery.min.js"></script>
+    <script src="../static/js/register.js"></script>
+
+</head>
+<body>
+    <div class="box">
+        <div class="forms">
+            <div class="form-wrapper">
+                <div class="title">
+                    <h1>注 册</h1>
+                    <span>开始你的智能实践之旅！Click me to <a href="{{ url_for('index') }}">Index</a></span>
+                </div>
+                <!--            <form action="/register" class="input-wrapper" method="post">       -->
+                <form action="{{ url_for('register') }}" class="input-wrapper" method="post">
+                    <div class="input-wrapper">
+                        <div class="input-item">
+                            <span class="input-title">昵 称 *</span>
+                            <label for="username"></label>
+                            <input type="text" name="username" id="username" class="ipt" placeholder="Name">
+                        </div>
+                        <div class="input-item">
+                            <span class="input-title">邮 箱 *</span>
+                            <label for="email"></label>
+                            <input type="email" name="email" id="email" class="ipt" placeholder="Example@qq.com">
+                        </div>
+                        <div class="input-item">
+                            <span class="input-title">密 码 *</span>
+                            <label for="password"></label>
+                            <input type="password" name="password" id="password" class="ipt" placeholder="Password">
+                            <!--                      <span class="tips">必须至少 8 位数密码</span>   -->
+                        </div>
+                        <div class="input-item">
+                            <span class="input-title">确 认 密 码 *</span>
+                            <label>
+                                <input type="password" name="confirm-password" id="confirm-password" class="ipt"
+                                       placeholder="Confirm-Password" onkeyup="checkpassword()">
+                            </label>
+                            <span class="tips">必须至少 8 位数密码</span>
+                            <span id="tips_confirm"></span></input>
+                            {% for message in get_flashed_messages() %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="input-item">
+                            <label for="recaptcha"><span class="input-title">验 证 码 *</span></label>
+                            <div class="input-group">
+                                <input type="text" name="recaptcha" id="recaptcha" class="ipt"
+                                       placeholder="请注意区分大小写">
+                                <button class="btn btn-captcha" type="button" id="captcha-btn">获取验证码</button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-register">注 册</button>
+                        <div class="login-tips">
+                            已经有账户了？<span><a href="{{ url_for('login') }}">登录</a></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="bg">
+            <div class="text">REACH FOR THE STARS</div>
+            <img src="../static/asset/1.jpg" class="bg-img img-one" alt="img-one">
+            <img src="../static/asset/2.jpg" class="bg-img img-two" alt="img-two">
+        </div>
+    </div>
+    <script>
+        const imgs = document.querySelectorAll('.bg-img');
+        let flag = true;
+        setInterval(function () {
+            if(flag) {
+                imgs[0].style.opacity = 0
+                imgs[1].style.opacity = 1
+            } else {
+                imgs[0].style.opacity = 1
+                imgs[1].style.opacity = 0
+            }
+            flag = !flag
+        }, 5000)
+    </script>
+    <script type="text/javascript">
+        function checkpassword() {
+            const password = document.getElementById("password").value;
+            const check_password = document.getElementById("confirm-password").value;
+
+            if (password === check_password) {
+                document.getElementById("tips_confirm").innerHTML = "<br><font color='green'>两次密码输入一致</font>";
+                document.querySelector(".btn-register").disabled = false;
+            } else {
+                document.getElementById("tips_confirm").innerHTML = "<br><font color='red'>两次输入密码不一致!</font>";
+                document.querySelector(".btn-register").disabled = true;
+            }
+        }
+    </script>
+    <!--
+    <script type="text/javascript">
+        $(document).ready(function() {
+                alert("jQuery is working!");
+            });
+    </script>
+    -->
+</body>
+
+</html>

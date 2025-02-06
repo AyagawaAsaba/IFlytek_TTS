@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>基于讯飞开放平台应用</title>
+    <meta name="description" content="简介">
+    <meta name="keywords" content="关键字">
+</head>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.0.min.js') }} "></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }} "></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mycss.css') }}" />
+
+<script>
+    $(document).ready(function () {
+        var path = window.location.pathname;
+        var regExp = /[\/\.\?]+/;
+        str = path.split(regExp);
+        var node = str.slice(1);
+        $('#' + node + ' a').addClass('at');
+        $('#' + node).parent().parent().parent().addClass('in');
+    })
+
+
+
+</script>
+
+<body>
+    <div class="col-md-2 side-nav">
+        <div class="panel-group" id="accordion">
+            <div class="panel-heading panel">
+                <a class="side-nav-item item-title" href="/">
+                    首页
+                </a>
+                <div class="item-body collapse">
+                </div>
+            </div>
+
+            <div class="panel-heading panel">
+                <a data-toggle="collapse" data-parent="#accordion" href="#item-face" id="headcangku"
+                    class="side-nav-item item-title">
+                    人脸识别
+                </a>
+                <div id="item-face" class="panel-collapse collapse">
+                    <div class="item-body">
+                        <ul class="list-unstyled">
+                            <li class="item-second" id='feature'><a href="/feature">人脸特征分析</a></li>
+                            <li class="item-second" id='compare'><a href="/compare">人脸比对</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-heading panel">
+                <a data-toggle="collapse" data-parent="#accordion" href="#item-word" id="headcangku"
+                    class="side-nav-item item-title">
+                    文字识别
+                </a>
+                <div id="item-word" class="panel-collapse collapse">
+                    <div class="item-body">
+                        <ul class="list-unstyled">
+                            <li class="item-second" id='handwriting'><a href="/hand_writing">手写文字识别</a></li>
+                            <li class="item-second" id='general'><a href="/general">印刷文字识别</a></li>
+                            <li class="item-second"><a href="/itr">拍照速算识别</a></li>
+                            <li class="item-second"><a href="/itr_teach">公式识别</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="panel panel-primary">
+            <h1 class="panel-heading" style="text-align: center;"><strong> 人脸比对综合分析能力演示</strong></h1>
+            <p style="text-align:center">
+                基于讯飞自研的人脸算法，可实现对比两张照片中的人脸信息，判断是否是同一个人并返回相似度得分。
+            </p>
+
+            <table class="panel-body ">
+                <tr>
+                    <td valign="top" class="col-md-4">
+                        <div class="panel-body">
+                            <!-- Standar Form -->
+                            <h4><strong> 请选择需要分析的图片文件</strong></h4>
+                            <input type="file" name="file" id="file" accept=".jpg,.png,.bmp" class="buttodns1" required>
+
+                            <!-- Drop Zone -->
+                            <h4></h4>
+                            <!--<h4>或者将图片拖拽到这里</h4>-->
+                            <div id="drop-zone" class="form-inline">
+                                <img src="../static/images/default_face_compare.jpg" class="upload-drop-zone"
+                                    id="img" />
+                            </div>
+
+                        </div>
+                    </td>
+                    <td valign="top" class="col-md-3">
+                        <div class="panel-body ">
+                            <div class="js-upload-finished">
+
+                                <div class="form-inline" style="margin-top:80px">
+                                    <button type="button" class="btn btn-sm btn-primary identifybutton"
+                                        style="width:180px">人脸比对
+                                    </button>
+                                </div>
+                                <!--<h4><strong>识别结果</strong></h4>-->
+                                <br />
+                                <br />
+                                <div class="list-group" id='divAdd'
+                                    style="border:1px solid #ddd;min-height: 200px;padding: 8px;">
+                                    <a href="#" class="list-group-item list-group-item-success" id="res1"><span
+                                            class="badge alert-success pull-right"></span>相似度</a>
+                                    <a href="#" class="list-group-item list-group-item-success"><span
+                                            class="badge alert-success pull-right"></span>结果</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td valign="top" class="col-md-4">
+                        <div class="panel-body">
+                            <!-- Standar Form -->
+                            <h4><strong> 请选择需要分析的图片文件</strong></h4>
+                            <input type="file" name="file" id="file2" accept=".jpg,.png,.bmp" class="buttodns1"
+                                required>
+
+                            <!-- Drop Zone -->
+                            <h4></h4>
+                            <!--<h4>或者将图片拖拽到这里</h4>-->
+                            <div class="form-inline">
+                                <img src="../static/images/default_face_compare.jpg" class="upload-drop-zone"
+                                    id="img2" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <p style="color:gray">
+                *图片文件仅支持.jpg/.jpeg/.png/.bmp格式，图片大小不超过2M
+            </p>
+            <p style="color:gray">
+                *请提供清晰的人脸照片，人脸大小不小于30*30像素，其中人脸俯仰角、左右偏航角、人脸反转角60°以内识别效果最好
+            </p>
+            <p style="color:gray">
+                *人脸比对只可对比图片中主体部分人脸
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/compare.js') }} "></script>
+
+</body>
+
+</html>
